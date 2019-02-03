@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>BU Hack4Impact Applications - View all</title>
+	<style> table, th, td { border: 1px solid black; } </style>
+</head>
+<body> 
+	<table>
+		{% for title in header %}
+			<th>{{title}}</th>
+		{% endfor %}
+
+		{% for row in data %}
+			<tr>
+			{% for i in row %}
+				<td>{{i}}</td>
+			{% endfor %}
+			</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>
