@@ -1,22 +1,25 @@
 CREATE DATABASE applications;
 USE applications;
+
+/* each row is a submitted application, columns correspond to application questions */
 CREATE TABLE applications.applicants (
 	applicant_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     applicant_firstname VARCHAR(20) NOT NULL,
 	applicant_lastname VARCHAR(30) NOT NULL,
-    applicant_prefname VARCHAR(20),
+    applicant_prefname VARCHAR(20), /* preferred name, optional field, auto-populates with first name if no preferred name is given */
     applicant_pronouns VARCHAR(20),
     applicant_email VARCHAR(50) NOT NULL,
-    applicant_year TINYINT(5) UNSIGNED,
+    applicant_year TINYINT(5) UNSIGNED, /* numbers 1-4 correspond to class years, 5 is for grad students */
     applicant_major VARCHAR(50),
-    applicant_minor VARCHAR(50),
-    applicant_time TINYINT UNSIGNED,
-    applicant_experience TEXT,
-    applicant_techimpact TEXT,
-    applicant_personalimpact TEXT,
-    applicant_other TEXT DEFAULT NULL,
+    applicant_minor VARCHAR(50), /* optional field */
+    applicant_time TINYINT UNSIGNED, /* hours per week the applicant is willing to commit */
+    applicant_experience TEXT, 
+    applicant_techimpact TEXT, /* second short-answer application question */
+    applicant_personalimpact TEXT, /* first short-answer application question */
+    applicant_other TEXT DEFAULT NULL, /* any additional info, optional field */
     PRIMARY KEY (applicant_id));
     
+/* create stored procedure for adding new applications to database */
 DELIMITER //
  CREATE DEFINER=`root`@`localhost` PROCEDURE `createApplication`(
 IN firstname VARCHAR(20),
